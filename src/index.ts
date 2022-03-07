@@ -52,7 +52,7 @@ const testePagarme = async () => {
       number: "4000000000000010",
       exp_month: 1,
       exp_year: 30,
-      cvv: "351",
+      cvv: "3531",
       options: {
         verify_card: true,
       },
@@ -65,8 +65,6 @@ const testePagarme = async () => {
         headers: { authorization },
       }
     );
-
-    console.log("result.data :>> ", cardCreated.data);
 
     const card_id = cardCreated.data.id;
 
@@ -108,7 +106,7 @@ const testePagarme = async () => {
     );
     console.log("result :>> ", paymentResult.data);
   } catch (error) {
-    console.log("error.response :>> ", error.response);
+    console.log("error.response :>> ", error.response.data);
   }
 };
 
