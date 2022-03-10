@@ -66,8 +66,6 @@ const testePagarme = async () => {
       }
     );
 
-    const card_id = cardCreated.data.id;
-
     const payment = {
       items: [
         {
@@ -80,19 +78,8 @@ const testePagarme = async () => {
       customer_id,
       payments: [
         {
-          payment_method: "credit_card",
-          credit_card: {
-            recurrence: false,
-            installments: 1,
-            statement_descriptor: "AVENGERS",
-            card: {
-              number: "4000000000000010",
-              holder_name: "Tony Stark",
-              exp_month: 1,
-              exp_year: 30,
-              cvv: "3531",
-            },
-          },
+          payment_method: "boleto",
+          boleto: {},
         },
       ],
     };
@@ -104,7 +91,7 @@ const testePagarme = async () => {
         headers: { authorization },
       }
     );
-    console.log("result :>> ", paymentResult.data);
+    console.log("result :>> ", paymentResult.data.charges[0].last_transaction);
   } catch (error) {
     console.log("error.response :>> ", error.response.data);
   }
